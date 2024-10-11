@@ -76,9 +76,13 @@ import cross_icon from './cross_icon.png'
 import hero_img1 from './hero_img1.png'
 import hero_3 from './hero_3.png'
 import hero_4 from './hero_4.png'
+import pay_icon from './pay_icon.png'
+import delivery_icon from './delivery_icon.png'
 
 export const assets = {
     logo,
+    pay_icon,
+    delivery_icon,
     hero_img,
     cart_icon,
     dropdown_icon,

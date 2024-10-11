@@ -6,7 +6,7 @@ const Navbar = () => {
     const [visible, setvisible] = useState(false);
 
     return (
-        <div className='fixed top-0 left-0 w-full flex items-center justify-around py-3 font-medium  z-50'>
+        <div className='w-full flex items-center justify-around py-3 font-medium  z-50'>
         
             <img src={assets.logo} className='w-44' alt="" />
             
