@@ -15,3 +15,19 @@ a.active hr{
 
     display: block;
 }
+.slick-prev, .slick-next {
+    z-index: 10;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+  }
+/* Ensures there is no extra padding around slides */
+.slick-slide {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+    
+@layer base {
+  :root {
+        --radius: 0.5rem;
+    }
+}

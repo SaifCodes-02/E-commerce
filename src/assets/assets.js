@@ -99,7 +99,7 @@ export const assets = {
     contact_img,
     razorpay_logo,
     stripe_logo,
-    hero_img1,
+ hero_img1,
     hero_4,
     hero_3,
     cross_icon
@@ -140,7 +140,7 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "L", "XL"],
         date: 1716234545448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "aaaad",
@@ -176,7 +176,7 @@ export const products = [
         subCategory: "Topwear",
         sizes: ["S", "L", "XL"],
         date: 1716623423448,
-        bestseller: true
+        bestseller: false
     },
     {
         _id: "aaaag",
@@ -416,7 +416,7 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716639845448,
-        bestseller: false
+        bestseller: true
     },
     {
         _id: "aaaba",
@@ -584,7 +584,7 @@ export const products = [
         subCategory: "Winterwear",
         sizes: ["S", "M", "L", "XL"],
         date: 1716655245448,
-        bestseller: false
+        bestseller: true
     },
     {
         _id: "aaabo",

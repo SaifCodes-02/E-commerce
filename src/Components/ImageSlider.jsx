@@ -27,12 +27,13 @@ const ImageSlider = () => {
       if (sliderRef.current) {
         sliderRef.current.slickNext();
       }
-    }, 3000); // Change slide every 3 seconds
+    }, 4000); // Change slide every 4 seconds
 
     return () => clearInterval(interval); // Clear interval on component unmount
   }, []);
 
   return (
+    <div className='pt-16'>
     <div className='relative w-full h-[60vh] overflow-x-hidden overflow-y-hidden'> {/* Add overflow-x-hidden to prevent horizontal overflow */}
       <Slider ref={sliderRef} {...settings}>
         {images.map((img, index) => (
@@ -45,6 +46,7 @@ const ImageSlider = () => {
           </div>
         ))}
       </Slider>
+    </div>
     </div>
   );
 };

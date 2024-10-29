@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'; // Make sure to update the assets pat
 
 const Specs = () => {
   return (
-    <div className='py-2'>
+    <div className=''>
       <div className='grid grid-cols-2  md:grid-cols-4 gap-4'>
         
         {/* Free Delivery */}

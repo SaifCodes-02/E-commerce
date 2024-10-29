@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Specs from '../Components/Specs';
 import Arrivals from '../Components/Arrivals';
+import HighlightsSlider from '../Components/HighlightsSlider';
 
 
 
@@ -13,7 +14,7 @@ const Home = () => {
    <div ><Hero/></div>
    <div><Specs/></div>
  <div><Arrivals/></div>
-   
+   <HighlightsSlider/>
     </div>
   )
 }

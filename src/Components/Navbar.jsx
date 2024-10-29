@@ -6,9 +6,9 @@ const Navbar = () => {
     const [visible, setvisible] = useState(false);
 
     return (
-        <div className='w-full flex items-center justify-around py-3 font-medium  z-50'>
+        <div className='w-full flex items-center justify-around py-3 font-medium fixed z-50 bg-white' >
         
-            <img src={assets.logo} className='w-44' alt="" />
+           <Link to={'/'}> <img src={assets.logo} className='w-44 cursor-pointer' alt="" /></Link>
             
             <ul className='hidden sm:flex gap-6 text-base text-gray-700'>
                 <li>
@@ -59,8 +59,8 @@ const Navbar = () => {
                 <img src={assets.menu_icon} onClick={() => { setvisible(true) }} className='w-5 block sm:hidden cursor-pointer' alt="" />
             </div>
 
-            <div className={`absolute top-0 right-0 overflow-hidden transition-all bg-blue-700 ${visible ? 'w-full' : 'w-0'}`}>
-                <div className='flex flex-col text-white'>
+            <div className={`absolute top-0 right-0 overflow-hidden transition-all bg-[#f5f5f5]   ${visible ? 'w-full' : 'w-0'}`}>
+                <div className='flex flex-col text-gray-800'>
                     <div onClick={() => { setvisible(false) }} className='flex items-center gap-4 py-3 cursor-pointer '>
                         <img src={assets.dropdown_icon} className='h-4 rotate-180' alt="" />
                     </div>
