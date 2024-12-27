@@ -7,7 +7,7 @@ import HighlightsSlider from '../Components/HighlightsSlider';
 import Footer from '../Components/Footer';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Shopnow from '@/Components/Shopnow';
+import Shopnow from '../Components/Shopnow';
 
 const Home = () => {
   return (
