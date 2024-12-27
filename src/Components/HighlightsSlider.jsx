@@ -17,6 +17,8 @@ const HighlightsSlider = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 5, // Default for larger screens
+    autoplay: true, // Enable autoplay
+  autoplaySpeed: 3000, // Slide every 3 seconds
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -42,7 +44,7 @@ const HighlightsSlider = () => {
       {
         breakpoint: 480, // Extra small screen
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
         },
       },
     ],

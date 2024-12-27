@@ -12,25 +12,25 @@ const Navbar = () => {
             
             <ul className='hidden sm:flex gap-6 text-base text-gray-700'>
                 <li>
-                    <NavLink to='/' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-blue-800' : ''}`}>
+                    <NavLink to='/' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
                         <p className='font-semibold'>Home</p>
                         <hr className='w-2/4 h-[1.5px] border-none bg-black' />
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/collection' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-blue-800' : ''}`}>
+                    <NavLink to='/collection' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
                         <p className='font-semibold'>Collection</p>
                         <hr className='w-2/4 h-[1.5px] border-none bg-black' />
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/about' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-blue-800' : ''}`}>
+                    <NavLink to='/about' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
                         <p className='font-semibold'>About</p>
                         <hr className='w-2/4 h-[1.5px] border-none bg-black' />
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/contact' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-blue-800' : ''}`}>
+                    <NavLink to='/contact' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
                         <p className='font-semibold'>Contact</p>
                         <hr className='w-2/4 h-[1.5px] border-none bg-black' />
                     </NavLink>
@@ -53,7 +53,7 @@ const Navbar = () => {
                 
                 <Link to="/cart" className="relative">
                     <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
-                    <p className='absolute right-[-5px] bottom-[-5px] text-center leading-4 w-4 bg-blue-700 aspect-square rounded-full text-[8px] text-white font-medium'>2</p>
+                    <p className='absolute right-[-5px] bottom-[-5px] text-center leading-4 w-4 bg-black aspect-square rounded-full text-[8px] text-white font-medium'>2</p>
                 </Link>
 
                 <img src={assets.menu_icon} onClick={() => { setvisible(true) }} className='w-5 block sm:hidden cursor-pointer' alt="" />

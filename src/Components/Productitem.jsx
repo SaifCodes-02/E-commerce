@@ -20,7 +20,7 @@ const Productitem = ({ id, image, name, price, imgClass = '' }) => {
   };
 
   return (
-    <Link className='text-gray-700 cursor-pointer' to={`/product/${id}`}>
+    <Link className='text-black cursor-pointer' to={`/product/${id}`}>
       <div 
         className='overflow-hidden' 
         onMouseEnter={handleMouseEnter}

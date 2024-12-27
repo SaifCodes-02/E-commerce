@@ -11,6 +11,7 @@ import Orders from './Pages/Orders'; // Change this line to point to the correct
 import PlaceOrder from './Pages/PlaceOrder';
 import Contact from './Pages/Contact';
 import Navbar from './Components/Navbar';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 const App = () => {
