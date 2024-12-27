@@ -7,7 +7,8 @@ import HighlightsSlider from '../Components/HighlightsSlider';
 import Footer from '../Components/Footer';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Shopnow from '../Components/Shopnow';
+import Shop from '../Components/Shop';
+
 
 const Home = () => {
   return (
@@ -24,7 +25,7 @@ const Home = () => {
       
       <HighlightsSlider />
 
-      <div className='mb-3'><Shopnow/> </div>
+      <div className='mb-3'><Shop/> </div>
 <Footer/>
      {/* Use the ShopNow component */}
     </div>

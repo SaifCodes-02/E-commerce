@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { assets } from '../assets/assets';
 
-const Shopnow=() =>{
+const Shop=() =>{
   const womenImageRef = React.useRef(null); // Ref for Women's image
   const menImageRef = React.useRef(null); // Ref for Men's image
 
@@ -80,4 +80,4 @@ const Shopnow=() =>{
   );
 }
 
-export default Shopnow;
+export default Shop;
