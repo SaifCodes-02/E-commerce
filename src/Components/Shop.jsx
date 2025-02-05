@@ -10,7 +10,7 @@ const Shop=() =>{
   const isMenImageInView = useInView(menImageRef, { once: true }); // Trigger animation once for Men's image
 
   return (
-    <div className="flex flex-col lg:flex-row mt-5">
+    <div className="flex flex-col lg:flex-row mt-5 overflow-hidden">
       {/* Women's Section */}
       <motion.div
         ref={womenImageRef}
