@@ -25,7 +25,6 @@ const Home = () => {
       <HighlightsSlider />
 
       <div className='mb-3'><Shop/> </div>
-<Footer/>
      {/* Use the ShopNow component */}
     </div>
   );

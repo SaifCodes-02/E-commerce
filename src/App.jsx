@@ -12,6 +12,7 @@ import PlaceOrder from './Pages/PlaceOrder';
 import Contact from './Pages/Contact';
 import Navbar from './Components/Navbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Footer from './Components/Footer';
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
+      <Footer/>
     </div>
     </div>
   );
