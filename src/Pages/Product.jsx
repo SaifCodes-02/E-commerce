@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Shopcontext } from "@/Context/Shopcontext";
 import { useParams } from "react-router-dom";
-import ImageMagnifier from "@/components/ImageMagnifier.jsx";
+import ImageMagnifier from "@/Components/ImageMagnifier";
+
 
 const Product = () => {
   const { productId } = useParams();
@@ -44,7 +45,8 @@ const [activeTab, setActiveTab] = useState("description");
 
           {/* Main Image Display with Zoom Effect */}
           <div className="w-full max-w-md mx-auto">
-            <ImageMagnifier src={image} width={400} height={480} />
+            
+            <ImageMagnifier src={image} width={400} height={480}/>
           </div>
 
         </div>
