@@ -116,15 +116,7 @@ const [activeTab, setActiveTab] = useState("description");
 
       {/* Tab Content */}
       <div className="border border-gray-300 p-4 mt-2 text-gray-700 text-sm">
-        {activeTab === "description" && (
-          <p>
-            An e-commerce website is an online platform that facilitates the
-            buying and selling of products or services over the internet. It
-            serves as a virtual marketplace where businesses and individuals can
-            showcase their products, interact with customers, and conduct
-            transactions without the need for a physical presence.
-          </p>
-        )}
+       
       </div>
     </div>
     </div>
