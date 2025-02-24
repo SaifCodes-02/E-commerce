@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Shopcontext } from "@/Context/Shopcontext";
 import { useParams } from "react-router-dom";
-import ImageMagnifier from "../components/ImageMagnifier.jsx";// Import the magnifier
+import ImageMagnifier from "@/components/ImageMagnifier";
 
 const Product = () => {
   const { productId } = useParams();
