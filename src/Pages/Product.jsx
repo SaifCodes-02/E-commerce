@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Shopcontext } from "@/Context/Shopcontext";
 import { useParams } from "react-router-dom";
 import ImageMagnifier from "@/Components/ImageMagnifier";
+import Related from "@/Components/Related";
 
 
 const Product = () => {
@@ -62,14 +63,17 @@ const [activeTab, setActiveTab] = useState("description");
             <span className="text-gray-500">({productData.reviews} reviews)</span>
           </div>
 
-          {/* Price */}
-          <p className="text-2xl font-bold text-black mt-2">{currency}{productData.price}</p>
-
+         
           {/* Description */}
           <p className="text-gray-600 mt-4">{productData.description}</p>
 
+
+           {/* Price */}
+           <p className="text-2xl font-bold text-black mt-2">{currency}{productData.price}</p>
+
+
           {/* Size Selection */}
-          <div className="mt-6">
+          <div className="mt-3">
             <h3 className="text-lg font-medium">Select Size</h3>
             <div className="flex space-x-3 mt-2">
               {productData.sizes.map((item,index) => (
@@ -101,26 +105,37 @@ const [activeTab, setActiveTab] = useState("description");
         </div>
       </div>
 
-      <div className="w-full max-w-2xl mx-auto">
-      {/* Tabs */}
-      <div className="border-b border-gray-300 flex space-x-4">
-        <button
-          className={`px-4 py-2 text-sm font-bold ${
-            activeTab === "description"
-              ? "border-b-2 border-black text-black"
-              : "text-gray-500"
-          }`}
-          onClick={() => setActiveTab("description")}
-        >
-          Description
-        </button>
-      </div>
+      <div className="w-full mx-auto py-10">
+  {/* Tab */}
+  <div className="border-b border-gray-300">
+    <button
+      className="px-4 py-2 text-sm font-bold border-b-2 border-black text-black"
+    >
+      Description
+    </button>
+  </div>
 
-      {/* Tab Content */}
-      <div className="border border-gray-300 p-4 mt-2 text-gray-700 text-sm">
-       
-      </div>
-    </div>
+  {/* Tab Content */}
+  <div className="border border-gray-300 p-4 mt-2 text-gray-700 text-sm">
+    <p>
+    This e-commerce platform showcases a clothing brand that balances style and affordability—neither too premium nor too cheap. With a sleek design, seamless navigation, and detailed product pages, it ensures a smooth shopping experience. Customers can explore a diverse collection with size and color options tailored for every occasion.    </p>
+    <br />
+    <p>
+    <i> (Built as part of my developer portfolio, this site highlights my expertise in web development and e-commerce solutions.)  </i> </p>
+  </div>
+</div>
+
+
+{/* Related Product Section */}
+
+<div className="">
+
+<Related category={productData.category} subCategory={productData.subCategory}/>
+
+
+</div>
+
+
     </div>
   );
 };

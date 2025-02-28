@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
+import { useEffect } from "react";
 import { assets } from '../assets/assets';
 import { Link, NavLink } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const Navbar = () => {
     const [visible, setvisible] = useState(false);
-
+    const location = useLocation();
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, [location.pathname]);
     return (
         <div className='w-full flex items-center justify-around py-3 font-medium fixed z-50 bg-white' >
         
-           <Link to={'/'}> <img src={assets.logo} className='w-44 cursor-pointer' alt="" /></Link>
+        <Link
+        to="/"
+        onClick={(e) => {
+          if (location.pathname === "/") {
+            e.preventDefault(); // Prevent reloading if already on home
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        }}
+
+        
+      ><img src={assets.logo} alt="Logo" className="w-44 cursor-pointer" /></Link>
             
             <ul className='hidden sm:flex gap-6 text-base text-gray-700'>
                 <li>

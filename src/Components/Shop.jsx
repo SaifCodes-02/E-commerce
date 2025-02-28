@@ -37,7 +37,7 @@ const Shop=() =>{
             initial={{ x: '-100%', opacity: 0 }}
             animate={isWomenImageInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
-            className="bg-white text-black px-6 py-2 font-medium uppercase hover:bg-gray-200 transition"
+            className="bg-white text-black px-6 py-2 font-medium uppercase hover:bg-gray-200 transition rounded-sm"
           >
             Shop Now
           </motion.button>
@@ -70,7 +70,7 @@ const Shop=() =>{
             initial={{ x: '200%', opacity: 0 }}
             animate={isMenImageInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
-            className="bg-white text-black px-6 py-2 font-medium uppercase hover:bg-gray-200 transition"
+            className="bg-white text-black px-6 py-2 font-medium uppercase rounded-sm hover:bg-gray-200 transition"
           >
             Shop Now
           </motion.button>
