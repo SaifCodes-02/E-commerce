@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useEffect } from "react";
+import { Shopcontext } from "@/Context/Shopcontext";
 import { assets } from '../assets/assets';
 import { Link, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -9,6 +10,8 @@ const Navbar = () => {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, [location.pathname]);
+
+      const{getcartcount}=useContext(Shopcontext);
     return (
         <div className='w-full flex items-center justify-around py-3 font-medium fixed z-50 bg-white' >
         
@@ -57,7 +60,7 @@ const Navbar = () => {
                 <div className='group relative'>
                     <img src={assets.profile_icon} className='w-5 cursor-pointer' alt="" />
                     <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
-                        <div className='flex flex-col gap-1 w-36 py-3 px-5 bg-blue-700 text-white rounded-md'>
+                        <div className='flex flex-col gap-1 w-36 py-3 px-5 bg-gray-200 text-gray-600 rounded-md'>
                             <p className='cursor-pointer hover:font-bold'>My profile</p>
                             <p className='cursor-pointer hover:font-bold'>Orders</p>
                             <p className='cursor-pointer hover:font-bold'>Log out</p>
@@ -67,7 +70,7 @@ const Navbar = () => {
                 
                 <Link to="/cart" className="relative">
                     <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
-                    <p className='absolute right-[-5px] bottom-[-5px] text-center leading-4 w-4 bg-black aspect-square rounded-full text-[8px] text-white font-medium'>2</p>
+                    <p className='absolute right-[-5px] bottom-[-5px] text-center leading-4 w-4 bg-black aspect-square rounded-full text-[8px] text-white font-medium'>{getcartcount()}</p>
                 </Link>
 
                 <img src={assets.menu_icon} onClick={() => { setvisible(true) }} className='w-5 block sm:hidden cursor-pointer' alt="" />
