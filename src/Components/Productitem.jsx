@@ -34,7 +34,7 @@ const Productitem = ({ id, image, name, price, imgClass = '' }) => {
       </div>
       <p className='pt-3 pb-1 text-sm'>{name}</p>
       <p className='text-sm font-medium'>
-        {price}{currency}
+      {currency} {price}
       </p>
     </Link>
   );

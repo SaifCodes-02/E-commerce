@@ -1,11 +1,12 @@
 import Title from "@/Components/Title";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useFormik } from "formik";
 import { DeliverySchema, ShippingSchema } from "@/Schemas";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { Shopcontext } from "@/Context/Shopcontext";
 
 const initialValues = {
   firstname: "",
@@ -29,6 +30,34 @@ const PlaceOrder = () => {
   const [countries, setCountries] = useState([]);
   const [deliveryInfo, setDeliveryInfo] = useState({});
   const [shippingInfo, setShippingInfo] = useState({});
+  const { cart, products } = useContext(Shopcontext);
+
+  // Convert cart object to an array of items
+  const cartItemsArray = Object.entries(cart || {}).flatMap(([itemId, sizes]) =>
+    Object.entries(sizes).map(([size, quantity]) => {
+      // Find the product in the products array
+      const product = products.find(p => p._id === itemId);
+      
+      return {
+        id: itemId,
+        size,
+        quantity,
+        price: product?.price || 0,
+        product: product || null // Store the entire product for easy access
+      };
+    })
+  );
+  useEffect(() => {
+    console.log("Cart Data:", cart);
+    console.log("Products Data:", products);
+    console.log("Cart Items Array:", cartItemsArray);
+  }, [cart, products, cartItemsArray]);
+
+
+  // Calculate total price using reduce()
+  const totalAmount = cartItemsArray.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
 
   // Load countries and provinces when component mounts
   useEffect(() => {
@@ -57,9 +86,8 @@ const PlaceOrder = () => {
     validationSchema: ShippingSchema,
     onSubmit: (values) => {
       setShippingInfo(values);
-      console.log(shippingFormik.errors);
       console.log("Shipping Information:", values);
-      alert("Order placed successfully!"); // Add this for testing
+      alert("Order placed successfully!");
     },
   });
 
@@ -110,9 +138,8 @@ const PlaceOrder = () => {
         <div className="w-full sm:w-1/2 p-6">
           {/* Step 1: Contact Form */}
           <div
-            className={`mb-8 ${
-              step === 2 ? "opacity-50 pointer-events-none" : ""
-            }`}
+            className={`mb-8 ${step === 2 ? "opacity-50 pointer-events-none" : ""
+              }`}
           >
             <div className="text-2xl sm:text-3xl my-3 pt-10">
               <div className="flex items-center gap-3 justify-center">
@@ -172,7 +199,7 @@ const PlaceOrder = () => {
 
           {/* Step 2: Shipping Information Form */}
           <div
-            className={`${step === 1 ? "opacity-50 pointer-events-none" : ""}`}
+            className={step === 1 ? "opacity-50 pointer-events-none" : ""}
           >
             <div className="text-2xl sm:text-3xl my-3 pt-10">
               <div className="flex items-center gap-3 justify-center">
@@ -277,29 +304,35 @@ const PlaceOrder = () => {
                   </p>
                 )}
 
-              {/* Phone Input 
-              <PhoneInput
-                international
-                defaultCountry="PK"
-                value={shippingFormik.values.phone}
-                onChange={(value) => {
-                  shippingFormik.setFieldValue("phone", value);
-                  shippingFormik.setFieldTouched("phone", true, false);
-                }}
-                className="border p-2 w-full mt-2 rounded-sm"
-              />
-              {shippingFormik.errors.phone && shippingFormik.touched.phone && (
-                <p className="text-red-500 text-sm">
-                  {shippingFormik.errors.phone}
-                </p>
-              )}*/}
+              {/* Phone Input */}
+              <div className="mt-2">
+                <label htmlFor="phone" className="text-sm text-gray-600">
+                  Phone Number
+                </label>
+                <PhoneInput
+                  international
+                  defaultCountry="PK"
+                  countries={["PK"]}
+                  value={shippingFormik.values.phone}
+                  onChange={(value) => {
+                    shippingFormik.setFieldValue("phone", value);
+                    shippingFormik.setFieldTouched("phone", true, false);
+                  }}
+                  className="border p-2 w-full mt-1 rounded-sm"
+                  id="phone"
+                />
+                {shippingFormik.errors.phone && shippingFormik.touched.phone && (
+                  <p className="text-red-500 text-sm">
+                    {shippingFormik.errors.phone}
+                  </p>
+                )}
+              </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-            //    disabled={!shippingFormik.isValid || !shippingFormik.dirty}
+                disabled={!shippingFormik.isValid || !shippingFormik.dirty}
                 className="bg-black text-white py-2 w-full mt-4 rounded-sm"
-                onClick={()=>alert("Order placed successfully!")}
               >
                 Place Order
               </button>
@@ -307,10 +340,72 @@ const PlaceOrder = () => {
           </div>
         </div>
 
-        {/* Right Section */}
-        <div className="w-full sm:w-1/2 bg-gray-100 p-6 rounded-lg">
-          <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-          <p>This is the right section content. You can add anything here.</p>
+        {/* Right Section (Order Summary) */}
+        <div className="w-full sm:w-1/2 bg-white p-6 rounded-lg shadow-md border max-h-fit overflow-y-auto">
+          {/* Header */}
+          <div className="flex justify-between items-center border-b pb-2 mb-4">
+            <h2 className="text-lg font-semibold">Order Summary ({cartItemsArray.length})</h2>
+            <p className="text-lg font-bold">Rs.{totalAmount.toFixed(2)}</p>
+          </div>
+
+          {/* Cart Items */}
+          {cartItemsArray.length > 0 ? (
+            cartItemsArray.map((item, index) => {
+              // Create a products lookup map outside of map to avoid redundant computation
+              const productsMap = Object.fromEntries(products.map(p => [p._id, p]));
+              const product = productsMap[item.id] || {};
+
+              console.log("Product name for item ID", item.id, ":", product.name);
+
+              return (
+                <div key={index} className="mb-6">
+                  <div className="flex items-start gap-4">
+                    <img
+                      src={product.image[0] || "/placeholder.jpg"} // Avoid broken image
+                      alt={product.name || "Unknown Product"}
+                      className="w-20 h-20 object-cover rounded-md"
+                    />
+                    <div>
+                      <p className="text-md font-semibold">{product.name || "Unknown Product"}</p>
+                      <p className="text-gray-600">Rs.{product.price}</p>
+                      <p className="text-gray-600">Quantity: {item.quantity}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <p className="text-gray-600">Your cart is empty.</p>
+          )}
+
+
+          {/* Order Summary Breakdown */}
+          <div className="mt-6 border-t pt-4">
+            <h3 className="text-md font-bold">ORDER SUMMARY</h3>
+            <div className="flex justify-between text-sm text-gray-600 mt-2">
+              <span>Subtotal (Inclusive of Tax)</span>
+              <span>Rs.{totalAmount.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600 mt-2">
+              <span>Shipping</span>
+              <span>Rs.0.00</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600 mt-2">
+              <span>FBR POS</span>
+              <span>Rs.1.00</span>
+            </div>
+            <div className="flex justify-between text-lg font-bold mt-4">
+              <span>Total (PKR)</span>
+              <span>Rs.{(totalAmount + 1).toFixed(2)}</span>
+            </div>
+          </div>
+
+          {/* Footer Note */}
+          <div className="mt-6 text-xs text-gray-600 border-t pt-4">
+            You may receive multiple packages for one order. Discounted items are
+            non-exchangeable & non-returnable. Nationwide orders will be delivered
+            within 5-7 business days.
+          </div>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 export const Shopcontext = createContext();
 
 const ShopcontextProvider = (props) => {
-    const currency = '$';
+    const currency = 'PKR.';
     const deliveryfee = 50;
 const [cart, setcart] = useState({})
 

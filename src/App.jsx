@@ -13,6 +13,7 @@ import Contact from './Pages/Contact';
 import Navbar from './Components/Navbar';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Footer from './Components/Footer';
+import { Footerdemo } from './Components/ui/footer-section';
 
 
 const App = () => {
@@ -31,7 +32,7 @@ const App = () => {
         <Route path='/place-order' element={<PlaceOrder />} />
         <Route path='/contact' element={<Contact />} />
       </Routes>
-      <Footer/>
+   <Footerdemo/>
     </div>
     </div>
   );

@@ -18,12 +18,13 @@ export const DeliverySchema = Yup.object().shape({
 // Schema for Shipping Information (Step 2)
 export const ShippingSchema = Yup.object().shape({
   country: Yup.string().required('Country is required'),
-  state: Yup.string().required('State is required'),
+  province: Yup.string().required('State is required'),
   city: Yup.string().required('City is required'),
   address: Yup.string().required('Address is required'),
   zip: Yup.string().required('Zip is required').max(5, 'Zip must be 5 characters').min(5, 'Zip must be 5 characters'),
-  //phone: Yup.string()
-  //.matches(/^\+92\d{10}$/, 'Phone number must be in the format: +92XXXXXXXXXX')
- // .required('Phone number is required'),
-
+  phone: Yup.string()
+  .matches(/^\+92\d{10}$/, 'Phone number must be in the format: +92 3XX XXXXXXX')
+  .min(13, 'Phone number must be 11 characters ')
+  .max(13, 'Phone number must be 13 characters ')
+  .required('Phone number is required'),
 });
