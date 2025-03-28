@@ -24,7 +24,7 @@ const Shop=() =>{
           alt="Women's Watch"
           className="w-full h-[700px] object-cover"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white">
+        <div className="absolute inset-0 flex flex-col items-center text-center justify-center bg-black bg-opacity-50 text-white">
           <motion.h2
             initial={{ x: '-100%', opacity: 0 }}
             animate={isWomenImageInView ? { x: 0, opacity: 1 } : {}}

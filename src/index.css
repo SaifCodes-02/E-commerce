@@ -9,7 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 *{
-    font-family: "Poppins", sans-serif;
+    font-family: 'Montserrat', sans-serif;
    }
 a.active hr{
 

@@ -22,37 +22,54 @@ const Navbar = () => {
             e.preventDefault(); // Prevent reloading if already on home
             window.scrollTo({ top: 0, behavior: "smooth" });
           }
-        }}
-
-        
-      ><img src={assets.logo} alt="Logo" className="w-44 cursor-pointer" /></Link>
+        }}><img src={assets.logo} alt="Logo" className="w-44 cursor-pointer" /></Link>
             
-            <ul className='hidden sm:flex gap-6 text-base text-gray-700'>
-                <li>
-                    <NavLink to='/' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
-                        <p className='font-semibold'>Home</p>
-                        <hr className='w-2/4 h-[1.5px] border-none bg-black' />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/collection' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
-                        <p className='font-semibold'>Collection</p>
-                        <hr className='w-2/4 h-[1.5px] border-none bg-black' />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/about' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
-                        <p className='font-semibold'>About</p>
-                        <hr className='w-2/4 h-[1.5px] border-none bg-black' />
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/contact' className={({ isActive }) => `flex items-center gap-1 ${isActive ? 'text-black' : ''}`}>
-                        <p className='font-semibold'>Contact</p>
-                        <hr className='w-2/4 h-[1.5px] border-none bg-black' />
-                    </NavLink>
-                </li>
-            </ul>
+    <ul className='hidden sm:flex gap-8 text-lg text-black '>
+    <li>
+    <NavLink 
+            to="/" 
+            className="flex items-center gap-1 hover:text-gray-600 font-normal"
+            onClick={(e) => {
+                if (location.pathname === "/") {
+                    e.preventDefault(); // Prevent reloading if already on home
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+            }}
+        >
+            <p className='font-medium'>HOME</p>
+            <hr className='w-full h-[1.5px] border-none bg-black' />
+        </NavLink>
+    </li>
+    <li>
+        <NavLink 
+            to='/collection' 
+            className="flex items-center gap-1 hover:text-gray-600"
+        >
+            <p className='font-medium'>MEN</p>
+            <hr className='w-2/4 h-[1.5px] border-none bg-black' />
+        </NavLink>
+    </li>
+    <li>
+        <NavLink 
+            to='/about' 
+            className="flex items-center gap-1 hover:text-gray-600"
+        >
+            <p className='font-medium'>WOMEN</p>
+            <hr className='w-2/4 h-[1.5px] border-none bg-black' />
+        </NavLink>
+    </li>
+    <li>
+        <NavLink 
+            to='/contact' 
+            className="flex items-center gap-1 hover:text-gray-600"
+        >
+            <p className='font-medium'>KIDS</p>
+            <hr className='w-2/4 h-[1.5px] border-none bg-black' />
+        </NavLink>
+    </li>
+</ul>
+
+
 
             <div className='flex items-center gap-4'>
                 <img src={assets.search_icon} className='w-5 cursor-pointer' alt="" />

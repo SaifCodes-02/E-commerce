@@ -34,7 +34,7 @@ const ImageSlider = () => {
 
   return (
     <div className='pt-16'>
-    <div className='relative w-full h-[60vh] overflow-x-hidden overflow-y-hidden'> {/* Add overflow-x-hidden to prevent horizontal overflow */}
+    <div className='relative w-full overflow-x-hidden overflow-y-hidden'> {/* Add overflow-x-hidden to prevent horizontal overflow */}
       <Slider ref={sliderRef} {...settings}>
         {images.map((img, index) => (
           <div key={index} className="w-full h-full">
