@@ -10,7 +10,7 @@ const Specs = () => {
         <div className='flex items-center justify-center gap-2 p-4 '>
           <img src={assets.delivery_icon} className='w-12' alt="Delivery Icon" />
           <div>
-            <p className='font-bold'>Free Delivery</p>
+            <p className='font-semibold'>Free Delivery</p>
             <p className='text-sm text-gray-700'>For all orders over $99</p>
           </div>
         </div>
@@ -19,7 +19,7 @@ const Specs = () => {
         <div className='flex items-center justify-center gap-2 p-4 '>
           <img src={assets.exchange_icon} className='w-12' alt="Return Icon" />
           <div>
-            <p className='font-bold'>30 Days Return</p>
+            <p className='font-semibold'>30 Days Return</p>
             <p className='text-sm text-gray-700'>If goods have problems</p>
           </div>
         </div>
@@ -28,7 +28,7 @@ const Specs = () => {
         <div className='flex items-center justify-center gap-2 p-4 '>
           <img src={assets.pay_icon} className='w-12' alt="Payment Icon" />
           <div>
-            <p className='font-bold'>Secure Payment</p>
+            <p className='font-semibold'>Secure Payment</p>
             <p className='text-sm text-gray-700'>100% secure payment</p>
           </div>
         </div>
@@ -37,7 +37,7 @@ const Specs = () => {
         <div className='flex items-center justify-center gap-2 p-4 '>
           <img src={assets.support_img} className='w-12' alt="Support Icon" />
           <div>
-            <p className='font-bold'>24/7 Support</p>
+            <p className='font-semibold'>24/7 Support</p>
             <p className='text-sm text-gray-700'>Dedicated support</p>
           </div>
         </div>

@@ -54,7 +54,7 @@ import p_img50 from './p_img50.png'
 import p_img51 from './p_img51.png'
 import p_img52 from './p_img52.png'
 
-
+import mb from './mb.png'
 import logo from './logo.png'
 import hero_img from './hero_img.png'
 import womenwatch from './womenwatch.jpg'
@@ -80,9 +80,15 @@ import hero_3 from './hero_3.png'
 import hero_4 from './hero_4.png'
 import pay_icon from './pay_icon.png'
 import delivery_icon from './delivery_icon.png'
-
+import mb_1 from './mb_1.png'
+import mb_2 from './mb_2.png'
+import mb_3 from './mb_3.png'
 export const assets = {
     logo,
+    mb,
+    mb_1,
+    mb_2,
+    mb_3,
     pay_icon,
     delivery_icon,
     hero_img,
