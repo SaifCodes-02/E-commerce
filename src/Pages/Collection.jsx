@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
-import { Shopcontext } from '../context/Shopcontext';
 import Productitem from "../components/Productitem";
+import { Shopcontext } from '@/Context/Shopcontext';
 
 const Collection = () => {
     const { category } = useParams();
-    const { products } = useContext(Shopcontext);
+    const { products } = useContext(Shopcontext)
 
     // Filter products based on category from URL
     const filteredProducts = products.filter(product => 
