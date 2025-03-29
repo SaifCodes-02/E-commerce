@@ -7,6 +7,12 @@ import { useLocation } from "react-router-dom";
 const Navbar = () => {
     const [visible, setvisible] = useState(false);
     const location = useLocation();
+    const categories = {
+        men: ['Shirts', 'Pants', 'Shoes', 'Accessories'],
+        women: ['Dresses', 'Tops', 'Jeans', 'Bags'],
+        kids: ['Boys', 'Girls', 'Infants', 'Toys']
+      };
+      const [hoveredCategory, setHoveredCategory] = useState(null);
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, [location.pathname]);
@@ -40,34 +46,40 @@ const Navbar = () => {
             <hr className='w-full h-[1.5px] border-none bg-black' />
         </NavLink>
     </li>
-    <li>
-        <NavLink 
-            to='/collection' 
-            className="flex items-center gap-1 hover:text-gray-600"
-        >
-            <p className='font-medium'>MEN</p>
-            <hr className='w-2/4 h-[1.5px] border-none bg-black' />
-        </NavLink>
-    </li>
-    <li>
-        <NavLink 
-            to='/about' 
-            className="flex items-center gap-1 hover:text-gray-600"
-        >
-            <p className='font-medium'>WOMEN</p>
-            <hr className='w-2/4 h-[1.5px] border-none bg-black' />
-        </NavLink>
-    </li>
-    <li>
-        <NavLink 
-            to='/contact' 
-            className="flex items-center gap-1 hover:text-gray-600"
-        >
-            <p className='font-medium'>KIDS</p>
-            <hr className='w-2/4 h-[1.5px] border-none bg-black' />
-        </NavLink>
-    </li>
-</ul>
+    {/* Category Links with Dropdowns */}
+        {Object.entries(categories).map(([category, subcategories]) => (
+          <li
+            key={category}
+            className="relative group" // Tailwind group for hover states
+            onMouseEnter={() => setHoveredCategory(category)}
+            onMouseLeave={() => setHoveredCategory(null)}
+          >
+            {/* Main Category Link */}
+            <NavLink
+              to={`/collection/${category}`}
+              className="flex items-center gap-1 hover:text-gray-600"
+            >
+              <p className='font-medium'>{category.toUpperCase()}</p>
+              <hr className='w-2/4 h-[1.5px] border-none bg-black' />
+            </NavLink>
+
+            {/* Subcategory Dropdown */}
+            {hoveredCategory === category && (
+              <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50 border border-gray-100">
+                {subcategories.map((subcategory) => (
+                  <NavLink
+                    key={subcategory}
+                    to={`/collection/${category}/${subcategory.toLowerCase()}`}
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-50"
+                  >
+                    {subcategory}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
 
 
 
@@ -80,7 +92,7 @@ const Navbar = () => {
                         <div className='flex flex-col gap-1 w-36 py-3 px-5 bg-gray-200 text-gray-600 rounded-md'>
                             <p className='cursor-pointer hover:font-bold'>My profile</p>
                             <p className='cursor-pointer hover:font-bold'>Orders</p>
-                            <p className='cursor-pointer hover:font-bold'>Log out</p>
+                            <p className='cursor-pointer hover:font-bold'>Favorites</p>
                         </div>
                     </div>
                 </div>
@@ -93,15 +105,16 @@ const Navbar = () => {
                 <img src={assets.menu_icon} onClick={() => { setvisible(true) }} className='w-5 block sm:hidden cursor-pointer' alt="" />
             </div>
 
-            <div className={`absolute top-0 right-0 overflow-hidden transition-all bg-[#f5f5f5]   ${visible ? 'w-full' : 'w-0'}`}>
+            <div className={`absolute top-0 right-0 h-screen overflow-hidden transition-all bg-[#f5f5f5] ${visible ? 'w-full' : 'w-0'}`}>
+
                 <div className='flex flex-col text-gray-800'>
                     <div onClick={() => { setvisible(false) }} className='flex items-center gap-4 py-3 cursor-pointer '>
                         <img src={assets.dropdown_icon} className='h-4 rotate-180' alt="" />
                     </div>
                     <NavLink onClick={() => { setvisible(false) }} className="py-2 pl-6 border" to="/">Home</NavLink>
-                    <NavLink onClick={() => { setvisible(false) }} className="py-2 pl-6 border" to="/collection">Collection</NavLink>
-                    <NavLink onClick={() => { setvisible(false) }} className="py-2 pl-6 border" to="/about">About</NavLink>
-                    <NavLink onClick={() => { setvisible(false) }} className="py-2 pl-6 border" to="/contact">Contact</NavLink>
+                    <NavLink onClick={() => { setvisible(false) }} className="py-2 pl-6 border" to="/collection/men">Men</NavLink>
+                    <NavLink onClick={() => { setvisible(false) }} className="py-2 pl-6 border" to="/collection/women">Women</NavLink>
+                    <NavLink onClick={() => { setvisible(false) }} className="py-2 pl-6 border" to="/collection/men">Kids</NavLink>
                 </div>
             </div>
     

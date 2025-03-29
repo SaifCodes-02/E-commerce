@@ -13,7 +13,7 @@ const Arrivals = () => {
   }, [products]);
 
   return (
-    <div className='py-7'>
+    <div className='py-7 w-full'>
 
       
       <div className='text-center py-5 text-4xl md:text-5xl'>

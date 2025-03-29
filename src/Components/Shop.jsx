@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { assets } from '../assets/assets';
 
@@ -33,14 +34,16 @@ const Shop=() =>{
           >
            FALL WOMEN'S COLLECTION
           </motion.h2>
-          <motion.button
-            initial={{ x: '-100%', opacity: 0 }}
-            animate={isWomenImageInView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="bg-white text-black px-6 py-2 font-medium uppercase hover:bg-gray-200 transition rounded-sm"
-          >
-            Shop Now
-          </motion.button>
+          <Link to="/collection/women">
+  <motion.button
+    initial={{ x: '200%', opacity: 0 }}
+    animate={isMenImageInView ? { x: 0, opacity: 1 } : {}}
+    transition={{ duration: 1, delay: 0.1 }}
+    className="bg-white text-black px-6 py-2 font-medium uppercase rounded-sm hover:bg-gray-200 transition"
+  >
+    Shop Now
+  </motion.button>
+</Link>
         </div>
       </motion.div>
 
@@ -64,16 +67,18 @@ const Shop=() =>{
             transition={{ duration: 1 }}
             className="text-3xl font-bold mb-4"
           >
-         FALL MEN COLLECTION
+         FALL MEN'S COLLECTION
           </motion.h2>
-          <motion.button
-            initial={{ x: '200%', opacity: 0 }}
-            animate={isMenImageInView ? { x: 0, opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="bg-white text-black px-6 py-2 font-medium uppercase rounded-sm hover:bg-gray-200 transition"
-          >
-            Shop Now
-          </motion.button>
+          <Link to="/collection/men">
+  <motion.button
+    initial={{ x: '200%', opacity: 0 }}
+    animate={isMenImageInView ? { x: 0, opacity: 1 } : {}}
+    transition={{ duration: 1, delay: 0.1 }}
+    className="bg-white text-black px-6 py-2 font-medium uppercase rounded-sm hover:bg-gray-200 transition"
+  >
+    Shop Now
+  </motion.button>
+</Link>
         </div>
       </motion.div>
     </div>
