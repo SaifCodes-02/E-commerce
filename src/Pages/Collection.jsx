@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
-import Productitem from "../components/Productitem";
+import Productitem from "../Components/Productitem";
 import { Shopcontext } from '@/Context/Shopcontext';
 
 const Collection = () => {
