@@ -1,102 +1,91 @@
-import { createContext } from "react";
-import { products } from "../assets/assets";
-import React, { useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
+import { db } from "../../firebaseConfig";            // ← your existing config
+import {
+  collection,
+  getDocs,
+  onSnapshot,   // optional: real-time updates
+} from "firebase/firestore";
+
 export const Shopcontext = createContext();
 
-const ShopcontextProvider = (props) => {
-    const currency = 'PKR.';
-    const deliveryfee = 50;
-const [cart, setcart] = useState({})
+const ShopcontextProvider = ({ children }) => {
+  const currency = "PKR.";
+  const deliveryfee = 50;
 
-const addtocart=async (Itemid,size) => {
-    
-const cartdata=structuredClone(cart)
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState({});
 
-if(cartdata[Itemid])
-    {
-        if(cartdata[Itemid][size])
-        {
-            cartdata[Itemid][size]+=1;
-        }
-else
-{
+  useEffect(() => {
+    const productsCol = collection(db, "products");
 
-    cartdata[Itemid][size]=1;
-}
-}
-else{
+    // One-time fetch:
+    getDocs(productsCol)
+      .then((snapshot) => {
+        const prods = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(prods);
+      })
+      .catch((err) => console.error("Error loading products:", err));
 
-    cartdata[Itemid]={};
-    cartdata[Itemid][size]=1;
-}
-setcart(cartdata);
+    // ── OR ──
+    // Real-time listener (uncomment if you want live updates):
+    // const unsubscribe = onSnapshot(productsCol, (snapshot) => {
+    //   const prods = snapshot.docs.map((doc) => ({
+    //     id: doc.id,
+    //     ...doc.data(),
+    //   }));
+    //   setProducts(prods);
+    // });
+    // return () => unsubscribe();
+  }, []);
 
-}
-
-const updatecart = (item_id, size, quantity) => {
-    // Create a copy of the cart to avoid direct state mutation
-    const cartdata = structuredClone(cart);
-  
-    // Initialize the product entry if it doesn't exist
-    if (!cartdata[item_id]) {
-      cartdata[item_id] = {};
-    }
-  
-    // If the size exists in the product entry
-    if (cartdata[item_id][size]) {
-      if (quantity <= 0) {
-        // Remove the size entry if quantity is 0 or less
-        delete cartdata[item_id][size];
-  
-        // If the product has no sizes left, remove the product entry
-        if (Object.keys(cartdata[item_id]).length === 0) {
-          delete cartdata[item_id];
-        }
-      } else {
-        // Update the quantity for the size
-        cartdata[item_id][size] = quantity;
-      }
-    } else {
-      // If the size doesn't exist, add it with the new quantity (if quantity > 0)
-      if (quantity > 0) {
-        cartdata[item_id][size] = quantity;
-      }
-    }
-  
-    // Update the cart state
-    setcart(cartdata);
+  const addtocart = (itemId, size) => {
+    const cartCopy = structuredClone(cart);
+    if (!cartCopy[itemId]) cartCopy[itemId] = {};
+    cartCopy[itemId][size] = (cartCopy[itemId][size] || 0) + 1;
+    setCart(cartCopy);
   };
 
+  const updatecart = (itemId, size, quantity) => {
+    const cartCopy = structuredClone(cart);
+    if (!cartCopy[itemId]) cartCopy[itemId] = {};
 
-
-const getcartcount=()=>{
-    let count=0;
-    for(const item in cart)
-    {
-        for(const size in cart[item])
-        {
-            count+=cart[item][size];
-        }
+    if (quantity <= 0) {
+      delete cartCopy[itemId][size];
+      if (Object.keys(cartCopy[itemId]).length === 0) {
+        delete cartCopy[itemId];
+      }
+    } else {
+      cartCopy[itemId][size] = quantity;
     }
-    return count;
 
+    setCart(cartCopy);
+  };
 
-}
-
-   
-
-    const value = {
-        products,
-        currency,
-        deliveryfee,
-        cart,addtocart,getcartcount,updatecart
-    };
-
-    return (
-        <Shopcontext.Provider value={value}>
-            {props.children}
-        </Shopcontext.Provider>
+  const getcartcount = () =>
+    Object.values(cart).reduce(
+      (sum, sizes) =>
+        sum + Object.values(sizes).reduce((a, qty) => a + qty, 0),
+      0
     );
+
+  const value = {
+    products,
+    currency,
+    deliveryfee,
+    cart,
+    addtocart,
+    getcartcount,
+    updatecart,
+  };
+
+  return (
+    <Shopcontext.Provider value={value}>
+      {children}
+    </Shopcontext.Provider>
+  );
 };
 
 export default ShopcontextProvider;
